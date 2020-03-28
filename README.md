@@ -1,5 +1,7 @@
 # SSE problem
 
+**UPDATE:** Actually, there wasn't any problem. I just misunderstood how server-sent events worked and my code was wrong. See [this link](https://simonprickett.dev/a-look-at-server-sent-events/) for a good overview. Notice in particular that properly closing the connection from the server side involves sending a special message (not defined by the protocol itself) that the client must recognize and expect.
+
 A repo for reproducing a problem (?) with wai-extra server-sent events.
 
 The example uses cabal-install >= 3.0 (check the cabal.freeze file for the
