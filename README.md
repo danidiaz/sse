@@ -32,7 +32,7 @@ Then, in the browser, go to
 In the page, open the Chrome Dev Tools and look at the console. In a few
 seconds, errors should start to appear.
 
-Like this one:
+Like [this one](console.PNG):
 
     (index):11 Event {isTrusted: true, type: "error", target: EventSource, currentTarget: EventSource, eventPhase: 2, …}
 
