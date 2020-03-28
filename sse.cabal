@@ -6,14 +6,16 @@ executable sse
     main-is: Main.hs
     build-depends:
         base,
-        scotty,
-        yesod,
+        -- scotty,
+        -- yesod,
         stm,
         stm-chans,
         async,
         aeson,
         text,
+        wai,
         wai-extra,
-        wai-app-static,
+        --wai-app-static,
+        warp,
         binary
     default-language: Haskell2010
