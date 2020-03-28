@@ -16,14 +16,17 @@ import Data.Foldable (for_)
 import Data.Text (Text)
 import Network.Wai.EventSource
 import Network.Wai.Middleware.AddHeaders
+import Network.Wai.Application.Static
 import Yesod
+import Network.Wai.Handler.Warp
+
 
 data HelloWorld = HelloWorld (TMChan ServerEvent)
 
 mkYesod
   "HelloWorld"
   [parseRoutes|
-/ HomeR GET
+/foo HomeR GET
 |]
 
 instance Yesod HelloWorld
@@ -34,7 +37,8 @@ getHomeR :: Handler ()
 getHomeR = do
   --addHeader "Access-Control-Allow-Origin:" "*"
   HelloWorld chan <- getYesod
-  sendWaiApplication . addHeaders [("Access-Control-Allow-Origin", "*")] . eventStreamAppRaw $ \send flush ->
+  --sendWaiApplication . addHeaders [("Access-Control-Allow-Origin", "http://localhost:3001")] . eventStreamAppRaw $ \send flush ->
+  sendWaiApplication . eventStreamAppRaw $ \send flush ->
     let go = do
           mevent <- liftIO $ atomically $ readTMChan chan
           case mevent of
@@ -47,6 +51,11 @@ getHomeR = do
               go
      in go
 
+
+-- getAnotherR :: Handler Value
+-- getAnotherR = do
+--     sendWaiApplication $ staticApp $ defaultWebAppSettings "."
+
 main :: IO ()
 main =
   do
@@ -55,9 +64,9 @@ main =
       ( do
           for_
             [ 
-             CommentEvent (fromByteString "starting"),
-             CommentEvent (fromByteString "working on it"),
-             CommentEvent (fromByteString "finishing")
+             ServerEvent (Just (fromByteString "starting")) (Just (fromByteString "aa1")) [fromByteString "payload1"],
+             ServerEvent (Just (fromByteString "workingonit")) (Just (fromByteString "aa2")) [fromByteString "payload2"],
+             ServerEvent (Just (fromByteString "finishing")) (Just (fromByteString "aa3")) [fromByteString "payload3"]
             ]
             ( \msg -> do
                 threadDelay 10e6

@@ -13,14 +13,10 @@
     <script>
         window.onload = function() {
             console.log("foo");
-            var source = new EventSource("http://localhost:3000"); 
+            var source = new EventSource('http://localhost:80/foo'); 
 
             source.onopen = function () { console.log('opened'); }; 
-            source.onerror = function (e) { console.log(e); }; 
-
-            source.addEventListener("foo", function (event) { 
-                console.log('some event');
-            });
+            source.onerror = function (e) { console.error(e); }; 
 
             source.onmessage = function (event) {  
               console.log('some message');

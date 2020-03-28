@@ -14,5 +14,6 @@ executable sse
         aeson,
         text,
         wai-extra,
+        wai-app-static,
         binary
     default-language: Haskell2010
