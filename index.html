@@ -11,10 +11,21 @@
         source.onerror = function (e) { console.error(e); }; 
         source.onmessage = function (event) {  
           console.log('some message');
-          if (event.id == "CLOSE") {
-            source.close(); 
-          }
+          console.log(event);
         }
+        source.addEventListener('eof', (e) => {
+            console.log('eof message');
+            console.log(e);
+            source.close();
+          // Do something - event data will be in e.data,
+          // message will be of type 'eventType'
+        });
+        source.addEventListener('noty', (e) => {
+            console.log('noty!');
+            console.log(e);
+          // Do something - event data will be in e.data,
+          // message will be of type 'eventType'
+        });
     }
 </script>
 </html>

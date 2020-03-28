@@ -19,9 +19,10 @@ main =
     concurrently_
       ( do
           for_
-            [ ServerEvent (Just . fromByteString $ "starting")    (Just . fromByteString $ "aa1") [fromByteString "payload1"],
-              ServerEvent (Just . fromByteString $ "workingonit") (Just . fromByteString $ "aa2") [fromByteString "payload2"],
-              ServerEvent (Just . fromByteString $ "finishing")   (Just . fromByteString $ "aa3") [fromByteString "payload3"]
+            [ ServerEvent (Just . fromByteString $ "noty")    (Just . fromByteString $ "aa1") [fromByteString "payload1"],
+              ServerEvent (Just . fromByteString $ "noty") (Just . fromByteString $ "aa2") [fromByteString "payload2"],
+              ServerEvent (Just . fromByteString $ "noty")   (Just . fromByteString $ "aa3") [fromByteString "payload3"],
+              ServerEvent (Just . fromByteString $ "eof")   (Just . fromByteString $ "theend") [fromByteString "theend"]
             ]
             ( \msg -> do
                 threadDelay 10e6

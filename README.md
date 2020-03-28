@@ -1,6 +1,6 @@
 # SSE problem
 
-A repo for reproducing a problem (?) with wai-extra server-sent events.
+A repo with an exmaple for wai-extra server-sent events.
 
 The example uses cabal-install >= 3.0 (check the cabal.freeze file for the
 exact versions of the packages).
@@ -29,12 +29,8 @@ Then, in the browser, go to
 
     http://localhost:3001
 
-In the page, open the Chrome Dev Tools and look at the console. In a few
-seconds, errors should start to appear.
+# See also
 
-Like this one:
+[a look at server-sent events](https://simonprickett.dev/a-look-at-server-sent-events/)
 
-![errormsg](console.PNG):
-
-    (index):11 Event {isTrusted: true, type: "error", target: EventSource, currentTarget: EventSource, eventPhase: 2, …}
 
