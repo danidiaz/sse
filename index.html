@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>Foo</h1>
+    <div>
+        <p>foo</p>
+    </div>
+</body>
+    <script>
+        window.onload = function() {
+            console.log("foo");
+            var source = new EventSource("http://localhost:3000"); 
+
+            source.onopen = function () { console.log('opened'); }; 
+            source.onerror = function (e) { console.log(e); }; 
+
+            source.addEventListener("foo", function (event) { 
+                console.log('some event');
+            });
+
+            source.onmessage = function (event) {  
+              console.log('some message');
+              if (event.id == "CLOSE") {
+                source.close(); 
+              }
+            }
+        }
+    </script>
+</html>

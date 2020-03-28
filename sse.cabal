@@ -1,0 +1,18 @@
+cabal-version: 3.0
+name: sse
+version: 1.0.0.0
+
+executable sse
+    main-is: Main.hs
+    build-depends:
+        base,
+        scotty,
+        yesod,
+        stm,
+        stm-chans,
+        async,
+        aeson,
+        text,
+        wai-extra,
+        binary
+    default-language: Haskell2010
